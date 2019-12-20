@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <script src="socket.io.js"></script>
+    <script>
+      const socket = io('http://localhost:3000');
+      socket.on('connect', function() {
+        socket.emit('get-price', { symbol: 'eurusd' });
+      });
+      socket.on('price-eur-usd-update', function(data) {
+        console.log('event', data);
+      });
+      socket.on('exception', function(data) {
+        console.log('event', data);
+      });
+      socket.on('disconnect', function() {
+        console.log('Disconnected');
+      });
+    </script>
+  </head>
+
+  <body></body>
+</html>
